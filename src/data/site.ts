@@ -40,7 +40,8 @@ export const social = [
 
 export const ciao = {
   prompt: "> Hello, world.",
-  name: "STEFANO TRANQUILLINI",
+  firstName: "STEFANO",
+  lastName: "TRANQUILLINI",
   role: "CO-Founder @ CHINO.io",
   taglines: ["PhD in Computer Science", "INTP-T · Trento, Italy"],
 };

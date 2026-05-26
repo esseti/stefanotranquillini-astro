@@ -7,10 +7,10 @@ import ProfileCanvas from './ProfileCanvas.astro';
   <div class="section__inner ciao__inner">
 
     <div class="ciao__text">
-      <p class="ciao__prompt">{ciao.prompt}</p>
+      <p class="ciao__prompt">{ciao.prompt}<span class="cursor" /></p>
 
-      <h1 class="ciao__name glitch" data-text={ciao.name}>
-        {ciao.name}<span class="cursor" />
+      <h1 class="ciao__name glitch" data-text={`${ciao.firstName} ${ciao.lastName}`}>
+        <span class="ciao__firstname">{ciao.firstName}</span><br />{ciao.lastName}
       </h1>
 
       <div class="ciao__meta">
