@@ -14,9 +14,9 @@ export const nav = [
 ];
 
 export const projects = [
-  { label: "vince", href: "https://vince.chino.io" },
-  { label: "yourtime", href: "https://yourtime.io" },
-  { label: "janus", href: "#" },
+  { label: "vince", href: "https://esseti.github.io/vince/" },
+  { label: "yourtime", href: "https://esseti.github.io/yourtime/" },
+  { label: "janus", href: "https://esseti.github.io/janus/" },
 ];
 
 export const social = [
@@ -30,7 +30,7 @@ export const social = [
     href: "https://github.com/stefanotranquillini",
     abbr: "GH",
   },
-  { label: "email", href: "mailto:stefano@chino.io", abbr: "EM" },
+  { label: "email", href: "https://mailhide.io/e/WuMEF", abbr: "EM" },
   {
     label: "keybase",
     href: "https://keybase.io/stefanotranquillini",
