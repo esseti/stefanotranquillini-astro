@@ -1,0 +1,131 @@
+---
+import { tech } from '../data/site';
+---
+
+<section id="tech" class="section section--alt">
+  <div class="section__inner">
+    <div class="section__num">03 / tech</div>
+    <h2 class="section__heading">Tech</h2>
+    <div class="divider" />
+
+    <p class="tech__intro prompt">{tech.intro}</p>
+
+    <div class="tech__grid">
+      <div class="tech__skills">
+        <div class="label" style="margin-bottom: 20px;">$ skills --list</div>
+        <div class="skill-groups">
+          {tech.skills.map(group => (
+            <div class="skill-group">
+              <div class="skill-group__label">// {group.category}</div>
+              <div class="skill-group__tags">
+                {group.items.map(item => (
+                  <span class="tag">{item}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="tech__philosophy">
+        <div class="label" style="margin-bottom: 16px;">// architecture</div>
+        <div class="tech__card">
+          <p>{tech.philosophy}</p>
+        </div>
+
+        <div class="tech__ascii" aria-hidden="true">
+          <pre>
+{`┌─ monolith ──────────────────┐
+│  ┌──────┐  ┌──────────────┐ │
+│  │ API  │→ │  App Layer   │ │
+│  └──────┘  └──────────────┘ │
+│            ┌──────────────┐ │
+│            │  Data Layer  │ │
+│            └──────────────┘ │
+└─────────────────────────────┘
+      ↕ scale when needed
+┌─ microservices ─────────────┐
+│  svc-a  svc-b  svc-c  ...  │
+└─────────────────────────────┘`}
+          </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tech__intro {
+    margin-bottom: 40px;
+    font-size: 14px;
+  }
+
+  .tech__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px 56px;
+    align-items: start;
+  }
+
+  /* Skill groups */
+  .skill-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .skill-group__label {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: lowercase;
+    margin-bottom: 8px;
+  }
+
+  .skill-group__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* Philosophy card */
+  .tech__card {
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--bg-card);
+    border-left: 2px solid var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .tech__card p {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.75;
+    font-style: italic;
+  }
+
+  /* ASCII art */
+  .tech__ascii {
+    overflow: hidden;
+  }
+
+  .tech__ascii pre {
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    border: 1px solid var(--border);
+    padding: 14px;
+    background: rgba(0, 255, 135, 0.02);
+    border-radius: 2px;
+    overflow-x: auto;
+  }
+
+  @media (max-width: 640px) {
+    .tech__grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+  }
+</style>

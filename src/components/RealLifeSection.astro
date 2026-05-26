@@ -1,0 +1,295 @@
+---
+import { realLife } from '../data/site';
+
+const icons: Record<string, string> = {
+  camera: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+    <circle cx="12" cy="13" r="3"/>
+  </svg>`,
+  running: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="13" cy="4" r="1.5"/>
+    <path d="M6 18l3.5-5 2.5 2 3-4.5"/>
+    <path d="M9 18l1.5-3"/>
+    <path d="M15 10.5l2 1.5-1.5 4"/>
+    <path d="M10 8l2 1.5"/>
+  </svg>`,
+  mountain: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 3l4 4 4-4"/>
+    <path d="M2 20L9 9l3 4 3-4 7 11z"/>
+  </svg>`,
+  waves: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2 8c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/>
+    <path d="M2 14c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/>
+    <path d="M2 20c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/>
+  </svg>`,
+  snowflake: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="2" x2="12" y2="22"/>
+    <line x1="2" y1="12" x2="22" y2="12"/>
+    <path d="M7 7l10 10M17 7L7 17"/>
+    <path d="M9 5l3-3 3 3M5 9l-3 3 3 3M15 19l3 3 3-3M19 15l3-3-3-3"/>
+  </svg>`,
+  golf: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="18" r="2"/>
+    <path d="M12 16V4"/>
+    <path d="M12 4l6 3-6 3"/>
+  </svg>`,
+  book: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+  </svg>`,
+  lego: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="9" width="18" height="12" rx="1"/>
+    <rect x="7" y="5" width="4" height="4" rx="1"/>
+    <rect x="13" y="5" width="4" height="4" rx="1"/>
+  </svg>`,
+  gamepad: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="6" y1="12" x2="10" y2="12"/>
+    <line x1="8" y1="10" x2="8" y2="14"/>
+    <circle cx="15.5" cy="11" r="0.75" fill="currentColor"/>
+    <circle cx="17.5" cy="13" r="0.75" fill="currentColor"/>
+    <path d="M4 8h16a2 2 0 0 1 1.7 3l-3 5.4A4 4 0 0 1 15.3 18H8.7a4 4 0 0 1-3.4-1.6L2.3 11A2 2 0 0 1 4 8z"/>
+  </svg>`,
+  chart: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+    <polyline points="16 7 22 7 22 13"/>
+  </svg>`,
+  crypto: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/>
+    <path d="M9 8h4.5a2 2 0 0 1 0 4H9m4.5 0H9v4"/>
+    <line x1="9" y1="12" x2="13.5" y2="12"/>
+    <line x1="10" y1="6.5" x2="10" y2="8"/>
+    <line x1="14" y1="6.5" x2="14" y2="8"/>
+    <line x1="10" y1="16" x2="10" y2="17.5"/>
+    <line x1="14" y1="16" x2="14" y2="17.5"/>
+  </svg>`,
+};
+---
+
+<section id="real-life" class="section section--alt">
+  <div class="section__inner">
+    <div class="section__num">05 / real life</div>
+    <h2 class="section__heading">Real Life</h2>
+    <div class="divider" />
+
+    <p class="rl__intro prompt">{realLife.intro}</p>
+
+    <div class="rl__interests">
+      {realLife.interests.map(item => (
+        <div class="rl__interest">
+          <span class="rl__icon" aria-hidden="true" set:html={icons[item.icon] ?? ''} />
+          <span class="rl__name">{item.name}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="rl__footer">
+      <span class="rl__eof">// EOF</span>
+      <span class="cursor" />
+      <button class="rl__continua" id="rl-continua" aria-label="continua" hidden>continua_</button>
+    </div>
+  </div>
+</section>
+
+<!-- Banksy full-screen overlay -->
+<div class="banksy-overlay" id="banksy-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="banksy-close" id="banksy-close" aria-label="chiudi">×</button>
+  <blockquote class="banksy-quote">
+    <p>{realLife.quote}</p>
+    <cite>— {realLife.quoteAuthor}</cite>
+  </blockquote>
+</div>
+
+<script>
+  const section = document.getElementById('real-life');
+  const trigger = document.getElementById('rl-continua') as HTMLButtonElement;
+  const overlay = document.getElementById('banksy-overlay')!;
+  const closeBtn = document.getElementById('banksy-close')!;
+
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  let revealed = false;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting && !revealed) {
+        timer = setTimeout(() => {
+          trigger.hidden = false;
+          requestAnimationFrame(() => trigger.classList.add('rl__continua--visible'));
+        }, 10000);
+      } else {
+        if (timer) { clearTimeout(timer); timer = null; }
+      }
+    },
+    { threshold: 0.6 }
+  );
+
+  if (section) observer.observe(section);
+
+  trigger.addEventListener('click', () => {
+    revealed = true;
+    overlay.classList.add('banksy-overlay--open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  });
+
+  function closeOverlay() {
+    overlay.classList.remove('banksy-overlay--open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    trigger.focus();
+  }
+
+  closeBtn.addEventListener('click', closeOverlay);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeOverlay(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('banksy-overlay--open')) closeOverlay(); });
+</script>
+
+<style>
+  .rl__intro {
+    margin-bottom: 36px;
+    font-size: 14px;
+  }
+
+  .rl__interests {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+    margin-bottom: 48px;
+  }
+
+  .rl__interest {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--bg-card);
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    cursor: default;
+  }
+
+  .rl__interest:hover {
+    border-color: var(--border-hover);
+    background: var(--accent-dim);
+    transform: translateY(-1px);
+  }
+
+  .rl__icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: var(--accent);
+    width: 18px;
+  }
+
+  .rl__icon svg {
+    display: block;
+  }
+
+  .rl__name {
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+
+  .rl__interest:hover .rl__name {
+    color: var(--accent);
+  }
+
+  /* Footer */
+  .rl__footer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .rl__eof {
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* Easter egg trigger */
+  .rl__continua {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .rl__continua--visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .rl__continua:hover {
+    text-decoration: underline;
+  }
+
+  /* Banksy full-screen overlay */
+  .banksy-overlay {
+    position: fixed;
+    inset: 0;
+    background: #c0392b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+
+  .banksy-overlay--open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .banksy-close {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 32px;
+    color: #fff;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .banksy-close:hover {
+    opacity: 1;
+  }
+
+  .banksy-quote {
+    max-width: 720px;
+    text-align: center;
+  }
+
+  .banksy-quote p {
+    font-size: clamp(20px, 4vw, 36px);
+    color: #fff;
+    font-style: italic;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  .banksy-quote cite {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: normal;
+    letter-spacing: 0.1em;
+  }
+</style>

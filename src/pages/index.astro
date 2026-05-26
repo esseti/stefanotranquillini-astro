@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import CiaoSection from '../components/CiaoSection.astro';
+import AboutSection from '../components/AboutSection.astro';
+import EntrepreneurSection from '../components/EntrepreneurSection.astro';
+import TechSection from '../components/TechSection.astro';
+import ResearcherSection from '../components/ResearcherSection.astro';
+import RealLifeSection from '../components/RealLifeSection.astro';
+import { meta } from '../data/site';
+---
+
+<Layout title={meta.title} description={meta.description}>
+  <Nav />
+  <main>
+    <CiaoSection />
+    <AboutSection />
+    <EntrepreneurSection />
+    <TechSection />
+    <ResearcherSection />
+    <RealLifeSection />
+  </main>
+</Layout>

@@ -1,0 +1,136 @@
+---
+import { entrepreneur } from '../data/site';
+---
+
+<section id="entrepreneur" class="section">
+  <div class="section__inner">
+    <div class="section__num">02 / entrepreneur</div>
+    <h2 class="section__heading">{entrepreneur.heading ?? 'Entrepreneur'}</h2>
+    <div class="divider" />
+
+    <div class="ent__header">
+      <div class="ent__company">{entrepreneur.company}</div>
+      <div class="ent__meta">
+        <span class="ent__role">{entrepreneur.role}</span>
+        <span class="ent__sep">·</span>
+        <span class="ent__period">{entrepreneur.period}</span>
+      </div>
+      <div class="ent__tagline">{entrepreneur.tagline}</div>
+    </div>
+
+    <div class="ent__body">
+      {entrepreneur.description.map(p => <p class="ent__p">{p}</p>)}
+    </div>
+
+    <div class="ent__highlight">
+      <span class="ent__highlight-icon">✦</span>
+      {entrepreneur.highlight}
+    </div>
+
+    <ul class="ent__pillars">
+      {entrepreneur.pillars.map(p => (
+        <li class="ent__pillar">
+          <span class="ent__pillar-mark">—</span>
+          {p}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .ent__header {
+    margin-bottom: 32px;
+  }
+
+  .ent__company {
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .ent__meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+
+  .ent__sep { color: var(--border-hover); }
+
+  .ent__role { color: var(--text-dim); }
+
+  .ent__tagline {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+    letter-spacing: 0.04em;
+  }
+
+  .ent__body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+    max-width: 620px;
+  }
+
+  .ent__p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+
+  /* Acquisition highlight */
+  .ent__highlight {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border: 1px solid rgba(157, 78, 221, 0.3);
+    border-radius: 2px;
+    background: var(--purple-dim);
+    font-size: 13px;
+    color: #b570f5;
+    letter-spacing: 0.04em;
+    margin-bottom: 32px;
+  }
+
+  .ent__highlight-icon {
+    font-size: 10px;
+    animation: blink 2s step-end infinite;
+  }
+
+  /* Pillars */
+  .ent__pillars {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 32px;
+  }
+
+  .ent__pillar {
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-dim);
+    align-items: baseline;
+  }
+
+  .ent__pillar-mark {
+    color: var(--accent);
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+
+  @media (max-width: 640px) {
+    .ent__pillars {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

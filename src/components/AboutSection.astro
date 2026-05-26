@@ -1,0 +1,146 @@
+---
+import { about } from '../data/site';
+---
+
+<section id="about" class="section section--alt">
+  <div class="section__inner">
+    <div class="section__num">01 / about</div>
+    <h2 class="section__heading">Who I Am</h2>
+    <div class="divider" />
+
+    <div class="about__grid">
+      <div class="about__bio">
+        {about.bio.map(p => <p class="about__p">{p}</p>)}
+
+        <div class="about__type">
+          <span class="about__type-label">personality</span>
+          <span class="about__type-value">{about.personality}</span>
+        </div>
+      </div>
+
+      <div class="about__timeline">
+        <div class="timeline__header label">timeline</div>
+        <ol class="timeline">
+          {about.timeline.map(item => (
+            <li class="timeline__item">
+              <span class="timeline__year">{item.year}</span>
+              <span class="timeline__event">{item.event}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px 64px;
+    align-items: start;
+  }
+
+  .about__bio {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .about__p {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .about__type {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 8px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--accent-dim);
+  }
+
+  .about__type-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .about__type-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  /* Timeline */
+  .timeline__header {
+    margin-bottom: 16px;
+  }
+
+  .timeline {
+    list-style: none;
+    position: relative;
+    padding-left: 1px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--accent), transparent);
+  }
+
+  .timeline__item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 0 10px 20px;
+    position: relative;
+  }
+
+  .timeline__item::before {
+    content: '';
+    position: absolute;
+    left: -3px;
+    top: 17px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--bg-alt);
+    border: 1.5px solid var(--accent);
+  }
+
+  .timeline__item:last-child::before {
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+  }
+
+  .timeline__year {
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+
+  .timeline__event {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+  }
+</style>

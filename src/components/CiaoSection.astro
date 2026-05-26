@@ -1,0 +1,241 @@
+---
+import { ciao, social } from '../data/site';
+import ProfileCanvas from './ProfileCanvas.astro';
+---
+
+<section id="ciao" class="section ciao">
+  <div class="section__inner ciao__inner">
+
+    <div class="ciao__text">
+      <p class="ciao__prompt">{ciao.prompt}</p>
+
+      <h1 class="ciao__name glitch" data-text={ciao.name}>
+        {ciao.name}<span class="cursor" />
+      </h1>
+
+      <div class="ciao__meta">
+        <span class="ciao__role">{ciao.role}</span>
+        {ciao.taglines.map(t => (
+          <span class="ciao__tagline">{t}</span>
+        ))}
+      </div>
+
+      <div class="ciao__social">
+        {social.map(s => (
+          <a href={s.href} class="social-link" target="_blank" rel="noopener noreferrer" aria-label={s.label}>
+            <span class="social-abbr">{s.abbr}</span>
+            <span class="social-label">{s.label}</span>
+          </a>
+        ))}
+      </div>
+
+      <a href="#about" class="ciao__scroll" aria-label="Scroll to about">
+        <span>scroll</span>
+        <span class="ciao__arrow">↓</span>
+      </a>
+    </div>
+
+    <div class="ciao__visual">
+      <ProfileCanvas />
+    </div>
+
+  </div>
+
+  <div class="ciao__grid" aria-hidden="true" />
+</section>
+
+<style>
+  .ciao {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Dot-grid background */
+  .ciao__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(rgba(0, 255, 135, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+
+  .ciao__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 40px 64px;
+    align-items: center;
+  }
+
+  .ciao__text {
+    min-width: 0;
+  }
+
+  .ciao__visual {
+    height: 500px;
+    position: relative;
+    /* Vignette mask so canvas fades into background */
+    -webkit-mask-image: radial-gradient(ellipse 85% 88% at 50% 48%, black 55%, transparent 100%);
+    mask-image: radial-gradient(ellipse 85% 88% at 50% 48%, black 55%, transparent 100%);
+    opacity: 0.85;
+  }
+
+  @media (max-width: 860px) {
+    .ciao__inner {
+      grid-template-columns: 1fr;
+    }
+    .ciao__visual {
+      display: none;
+    }
+  }
+
+  .ciao__prompt {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    letter-spacing: 0.05em;
+    animation: fade-up 0.6s ease both;
+  }
+
+  .ciao__prompt::before {
+    content: '> ';
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* Big name with glitch */
+  .ciao__name {
+    font-size: clamp(36px, 8vw, 80px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 32px;
+    position: relative;
+    animation: fade-up 0.6s 0.1s ease both;
+  }
+
+  .ciao__name.glitch::before,
+  .ciao__name.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+  }
+
+  .ciao__name.glitch::before {
+    animation: glitch-a 5s 2s infinite linear;
+  }
+
+  .ciao__name.glitch::after {
+    animation: glitch-b 5s 2.3s infinite linear;
+  }
+
+  /* Meta block */
+  .ciao__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-bottom: 40px;
+    animation: fade-up 0.6s 0.2s ease both;
+  }
+
+  .ciao__role {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+    width: 100%;
+  }
+
+  .ciao__tagline {
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .ciao__tagline:not(:last-child)::after {
+    content: ' ·';
+    color: var(--border-hover);
+    margin-left: 20px;
+  }
+
+  /* Social links */
+  .ciao__social {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 64px;
+    animation: fade-up 0.6s 0.3s ease both;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.07em;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    opacity: 1;
+  }
+
+  .social-link:hover {
+    color: var(--accent);
+    border-color: var(--border-hover);
+    background: var(--accent-dim);
+    opacity: 1;
+  }
+
+  .social-abbr {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    opacity: 0.6;
+    letter-spacing: 0.12em;
+  }
+
+  .social-link:hover .social-abbr {
+    opacity: 1;
+  }
+
+  /* Scroll indicator */
+  .ciao__scroll {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    opacity: 1;
+    animation: fade-up 0.6s 0.4s ease both;
+    transition: color 0.2s;
+  }
+
+  .ciao__scroll:hover {
+    color: var(--accent);
+    opacity: 1;
+  }
+
+  .ciao__arrow {
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(4px); }
+  }
+</style>

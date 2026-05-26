@@ -1,0 +1,167 @@
+---
+import { researcher } from '../data/site';
+---
+
+<section id="researcher" class="section">
+  <div class="section__inner">
+    <div class="section__num">04 / researcher</div>
+    <h2 class="section__heading">Researcher</h2>
+    <div class="divider" />
+
+    <div class="res__grid">
+      <div class="res__main">
+        <div class="res__degree">
+          <div class="label" style="margin-bottom: 6px;">degree</div>
+          <div class="res__degree-title">{researcher.degree}</div>
+          <div class="res__degree-inst">{researcher.institution}</div>
+        </div>
+
+        <div class="res__postdoc">
+          <span class="tag">{researcher.postdoc}</span>
+        </div>
+
+        <div class="res__industry">
+          <div class="label" style="margin-bottom: 8px;">industry research</div>
+          <div class="res__industry-list">
+            {researcher.industry.map(org => (
+              <span class="tag">{org}</span>
+            ))}
+          </div>
+        </div>
+
+        <blockquote class="res__quote">
+          <p>{researcher.reflection}</p>
+        </blockquote>
+      </div>
+
+      <div class="res__right">
+        <div class="res__areas">
+          <div class="label" style="margin-bottom: 12px;">research areas</div>
+          <ul class="area-list">
+            {researcher.areas.map(area => (
+              <li class="area-item">
+                <span class="area-dot" />
+                {area}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="res__teaching" style="margin-top: 32px;">
+          <div class="label" style="margin-bottom: 12px;">teaching</div>
+          <ul class="teaching-list">
+            {researcher.teaching.map(course => (
+              <li class="teaching-item">{course}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .res__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 56px;
+    align-items: start;
+  }
+
+  .res__main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .res__degree-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .res__degree-inst {
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .res__postdoc {
+    display: flex;
+  }
+
+  .res__industry-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .res__quote {
+    padding: 16px 18px;
+    border-left: 2px solid var(--purple);
+    background: var(--purple-dim);
+    border-radius: 0 2px 2px 0;
+  }
+
+  .res__quote p {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.75;
+    font-style: italic;
+  }
+
+  /* Research areas */
+  .area-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .area-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .area-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* Teaching */
+  .teaching-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .teaching-item {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    letter-spacing: 0.03em;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .teaching-item:hover {
+    border-color: var(--border-hover);
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 640px) {
+    .res__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>
