@@ -18,8 +18,23 @@ import { entrepreneur } from '../data/site';
       <div class="ent__tagline">{entrepreneur.tagline}</div>
     </div>
 
-    <div class="ent__body">
-      {entrepreneur.description.map(p => <p class="ent__p">{p}</p>)}
+    <div class="ent__content">
+      <div class="ent__body">
+        {entrepreneur.description.map(p => <p class="ent__p">{p}</p>)}
+      </div>
+
+      <div class="ent__now">
+        <div class="ent__now-label">// {entrepreneur.nowFocus.label}</div>
+        <p class="ent__now-intro">{entrepreneur.nowFocus.intro}</p>
+        <ul class="ent__now-list">
+          {entrepreneur.nowFocus.items.map(item => (
+            <li class="ent__now-item">
+              <span class="ent__now-mark">▸</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
 
     <div class="ent__highlight">
@@ -72,12 +87,63 @@ import { entrepreneur } from '../data/site';
     letter-spacing: 0.04em;
   }
 
+  .ent__content {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 24px 40px;
+    align-items: start;
+    margin-bottom: 32px;
+  }
+
   .ent__body {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    margin-bottom: 32px;
-    max-width: 620px;
+  }
+
+  /* Now box */
+  .ent__now {
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    border-radius: 2px;
+    background: var(--bg-card);
+  }
+
+  .ent__now-label {
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: lowercase;
+    margin-bottom: 10px;
+  }
+
+  .ent__now-intro {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .ent__now-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ent__now-item {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .ent__now-mark {
+    color: var(--accent);
+    font-size: 9px;
+    flex-shrink: 0;
   }
 
   .ent__p {
@@ -129,6 +195,10 @@ import { entrepreneur } from '../data/site';
   }
 
   @media (max-width: 640px) {
+    .ent__content {
+      grid-template-columns: 1fr;
+    }
+
     .ent__pillars {
       grid-template-columns: 1fr;
     }

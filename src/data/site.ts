@@ -65,13 +65,17 @@ export const ciao = {
   firstName: "STEFANO",
   lastName: "TRANQUILLINI",
   role: "CO-Founder @ CHINO.io",
-  taglines: ["PhD in Computer Science", "INTP-T · Trento, Italy"],
+  taglines: [
+    '"An atypical nerd"',
+    "PhD in Computer Science",
+    "Trentino, Italy 🇮🇹",
+  ],
 };
 
 export const about = {
   bio: [
     "My name is Stefano Tranquillini, but everybody calls me Stefano.",
-    "I'm a computer scientist who crossed from academic research into entrepreneurship — and never fully left either world.",
+    "I'm a computer scientist who crossed from academic research into entrepreneurship and never fully left either world.",
     "INTP-T by nature. I like building systems, untangling hard problems, and occasionally overengineering things just to understand how they work at a fundamental level.",
   ],
   personality: "INTP-T",
@@ -96,11 +100,11 @@ export const about = {
 export const entrepreneur = {
   company: "CHINO.io",
   role: "CO-Founder",
-  period: "2014 — 2025",
+  period: "2014 — present",
   tagline: "law × security × technology",
   description: [
     "Started as a research idea: what if compliance infrastructure was a product, not a consulting project? Ten years later, CHINO.io served healthcare, fintech, and enterprise clients handling sensitive data under GDPR, HIPAA, and beyond.",
-    "Building a company from scratch taught me that good architecture is not just technical — it's organizational, legal, commercial. The full stack.",
+    "Building a company from scratch taught me that good architecture is not just technical. It is organizational, legal, commercial. The full stack.",
   ],
   highlight: "Acquired by Gruppo Sicuro · March 2025",
   pillars: [
@@ -109,13 +113,22 @@ export const entrepreneur = {
     "Healthcare, fintech, enterprise verticals",
     "10+ years at the law-tech intersection",
   ],
+  nowFocus: {
+    label: "today",
+    intro: "Started as tech co-founder. Over time the role shifted from writing code to shaping the company.",
+    items: [
+      "Company vision and culture",
+      "Product strategy and direction",
+      "AI research and development",
+    ],
+  },
 };
 
 export const tech = {
   intro:
     "Backend systems, distributed architecture, compliance infrastructure.",
   skills: [
-    { category: "languages", items: ["Python"] },
+    { category: "languages", items: ["Python", "VibeCoder ;) "] },
     {
       category: "backend",
       items: ["Django", "Django REST Framework", "REST API Design", "FastAPI"],
@@ -158,7 +171,7 @@ export const researcher = {
     "Business Process Management — University of Trento",
   ],
   reflection:
-    "The research side never left. Systems thinking, rigorous analysis, and curiosity about how things work at a fundamental level — that's the thread connecting academia to entrepreneurship.",
+    "The research side never left. Systems thinking, rigorous analysis, and curiosity about how things work at a fundamental level.",
 };
 
 export const realLife = {

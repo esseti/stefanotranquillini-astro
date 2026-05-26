@@ -12,10 +12,10 @@ import { about } from '../data/site';
       <div class="about__bio">
         {about.bio.map(p => <p class="about__p">{p}</p>)}
 
-        <div class="about__type">
+        <!-- <div class="about__type">
           <span class="about__type-label">personality</span>
           <span class="about__type-value">{about.personality}</span>
-        </div>
+        </div> -->
       </div>
 
       <div class="about__timeline">
@@ -119,7 +119,7 @@ import { about } from '../data/site';
     border: 1.5px solid var(--accent);
   }
 
-  .timeline__item:last-child::before {
+  .timeline__item:first-child::before {
     background: var(--accent);
     box-shadow: 0 0 8px var(--accent-glow);
   }
