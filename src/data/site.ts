@@ -10,13 +10,35 @@ export const nav = [
   { label: "entrepreneur", href: "#entrepreneur" },
   { label: "tech", href: "#tech" },
   { label: "researcher", href: "#researcher" },
+  { label: "projects", href: "#projects" },
   { label: "real life", href: "#real-life" },
 ];
 
 export const projects = [
-  { label: "vince", href: "https://esseti.github.io/vince/" },
-  { label: "yourtime", href: "https://esseti.github.io/yourtime/" },
-  { label: "janus", href: "https://esseti.github.io/janus/" },
+  {
+    label: "janus",
+    href: "https://esseti.github.io/janus/",
+    description:
+      "Self-hosted Gmail AI triage. Scores every thread with an LLM and surfaces only what needs your attention. The rest gets archived automatically.",
+    icon: "bolt",
+    tech: ["AI", "Gmail", "Self-hosted"],
+  },
+  {
+    label: "yourtime",
+    href: "https://esseti.github.io/yourtime/",
+    description:
+      "Privacy-first activity monitor for macOS. Tracks every app, tab, and idle moment locally. No cloud, all data stays on your machine.",
+    icon: "clock",
+    tech: ["macOS", "Self-hosted", "Privacy"],
+  },
+  {
+    label: "vince",
+    href: "https://esseti.github.io/vince/",
+    description:
+      "macOS menu bar app for Google Calendar. Shows your next event with a live countdown and opens meeting links one minute before they start.",
+    icon: "calendar",
+    tech: ["macOS", "Calendar", "Slack"],
+  },
 ];
 
 export const social = [

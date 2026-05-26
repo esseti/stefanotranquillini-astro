@@ -1,0 +1,164 @@
+---
+import { projects } from '../data/site';
+
+const icons: Record<string, string> = {
+  bolt: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+  </svg>`,
+  clock: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <polyline points="12 6 12 12 16 14"/>
+  </svg>`,
+  calendar: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+    <line x1="16" y1="2" x2="16" y2="6"/>
+    <line x1="8" y1="2" x2="8" y2="6"/>
+    <line x1="3" y1="10" x2="21" y2="10"/>
+  </svg>`,
+};
+---
+
+<section id="projects" class="section">
+  <div class="section__inner">
+    <div class="section__num">05 / projects</div>
+    <h2 class="section__heading">Projects</h2>
+    <div class="divider" />
+
+    <p class="projects__intro prompt">Side projects. Self-hosted. Open source.</p>
+
+    <div class="projects__grid">
+      {projects.map(p => (
+        <a href={p.href} class="project-card" target="_blank" rel="noopener noreferrer">
+          <div class="project-card__icon" aria-hidden="true" set:html={icons[p.icon] ?? p.icon} />
+          <div class="project-card__body">
+            <div class="project-card__header">
+              <span class="project-card__label">{p.label}</span>
+              <span class="project-card__arrow">↗</span>
+            </div>
+            <p class="project-card__desc">{p.description}</p>
+            <div class="project-card__tags">
+              {p.tech.map(t => (
+                <span class="tag">{t}</span>
+              ))}
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects__intro {
+    margin-bottom: 40px;
+    font-size: 14px;
+  }
+
+  .projects__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--bg-card);
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    opacity: 1;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .project-card:hover {
+    border-color: var(--border-hover);
+    background: var(--accent-dim);
+    transform: translateY(-2px);
+  }
+
+  .project-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .project-card__icon {
+    display: flex;
+    align-items: center;
+    color: var(--accent);
+    width: 24px;
+    height: 24px;
+  }
+
+  .project-card__icon svg {
+    display: block;
+  }
+
+  .project-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .project-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .project-card__label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+  }
+
+  .project-card__arrow {
+    font-size: 14px;
+    color: var(--text-muted);
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .project-card:hover .project-card__arrow {
+    color: var(--accent);
+    transform: translate(2px, -2px);
+  }
+
+  .project-card__desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .project-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 720px) {
+    .projects__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
