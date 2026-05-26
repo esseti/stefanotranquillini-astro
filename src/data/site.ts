@@ -55,7 +55,7 @@ export const social = [
   { label: "email", href: "https://mailhide.io/e/WuMEF", abbr: "EM" },
   {
     label: "keybase",
-    href: "https://keybase.io/stefanotranquillini",
+    href: "https://keybase.io/esseti",
     abbr: "KB",
   },
 ];
